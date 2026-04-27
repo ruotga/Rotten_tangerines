@@ -1,6 +1,6 @@
 <?php
 
-class GestorPDO {
+class ContentGestor {
     private $db;
     
     public function __construct(){

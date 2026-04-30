@@ -3,36 +3,19 @@
 require_once "autoload.php";
 session_start();
 
-$ContentGestor=new ContentGestor();
-$userGestor=new userGestor();
+$ContentGestor = new ContentGestor();
 $ContentController = new ContentController($ContentGestor);
-$userController = new userController($userGestor);
 
-$accion = $_GET['accion'] ?? 'index';
+$action = $_GET['action'] ?? 'index';
 
-switch ($accion) {
+switch ($action) {
     case 'crear':
-    case 'editar':
-    case 'eliminar':
-    if (!isset($_SESSION['user_id'])){
-        header('Location: index.php?accion=login');
-        exit;
-        }
-
-        if($accion === 'crear') $ContentController->crear();
-        if($accion === 'editar') $ContentController->editar();
-        if($accion === 'eliminar') $ContentController->eliminar();
+        $ContentController->newMovie();
         break;
-
-    case 'registro':
-        $userController->registro();
-        break;  
-    case 'login':
-        $userController->login();
-        break;
-    case 'logout':
-        $userController->logout();
+    case 'guardar':
+        $ContentController->SaveMovie();
         break;
     default:
         $ContentController->index();
+    
 }

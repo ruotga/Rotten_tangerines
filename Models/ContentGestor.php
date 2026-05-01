@@ -26,14 +26,14 @@ class ContentGestor {
     
     $stmt = $this->db->prepare($sql);
     
-    return $stmt->execute([
-        ':title' => $movie->getTitle(),
-        ':genre' => $movie->getGenre(),
-        ':synopsis' => $movie->getSynopsis(),
-        ':release_date' => $movie->getReleaseDate(),
-        ':poster_url' => $movie->getPosterUrl(),
-        ':runtime_minutes' => $movie->getRuntime()
-    ]);
+    $stmt->bindValue(':title', $movie->getTitle());
+    $stmt->bindValue(':genre', $movie->getGenre());
+    $stmt->bindValue(':synopsis', $movie->getSynopsis());
+    $stmt->bindValue(':release_date', $movie->getReleaseDate());
+    $stmt->bindValue(':poster_url', $movie->getPosterUrl());
+    $stmt->bindValue(':runtime_minutes', $movie->getRuntime());
+    
+    return $stmt->execute();
 }
 }
 

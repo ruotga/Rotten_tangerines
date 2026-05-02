@@ -9,13 +9,20 @@ $ContentController = new ContentController($ContentGestor);
 $action = $_GET['action'] ?? 'index';
 
 switch ($action) {
-    case 'crear':
+    case 'createMovie':
         $ContentController->newMovie();
         break;
-    case 'guardar':
-        $ContentController->SaveMovie();
+    case 'saveMovie':
+        $ContentController->saveMovie();
         break;
+    case 'editMovie':
+        $ContentController->editMovie();
+        break;
+    case 'updateMovie':
+        $ContentController->updateMovie();
+        break;
+    case 'deleteMovie':
+        $ContentController->deleteMovie();
     default:
         $ContentController->index();
-    
 }

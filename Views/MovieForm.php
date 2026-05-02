@@ -29,7 +29,7 @@ $movie = $movie ?? null;
             <p><?= $movie ? 'Modifica los campos necesarios para actualizar la información.' : 'Completa el formulario para añadir contenido al catálogo.' ?></p>
         </div>
 
-        <form action="index.php?action=<?= $movie ? 'updateMovie' : 'saveMovie' ?>" method="POST" class="custom-form">
+        <form action="index.php?action=<?= $movie ? 'updateMovie' : 'createMovie' ?>" method="POST" class="custom-form">
             
             <?php if ($movie): ?>
                 <input type="hidden" name="id" value="<?= $movie->getId() ?>">

@@ -154,7 +154,6 @@ body {
     font-size: 0.9rem;
     color: var(--text-muted);
     display: -webkit-box;
-    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

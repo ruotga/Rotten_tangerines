@@ -13,22 +13,21 @@ class ContentController {
     }
 
     public function newMovie() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $newMovie = new Movie($_POST);
+        $success = $this->gestor->create($newMovie);
+
+        if ($success) {
+            header("Location: index.php?action=index");
+            exit;
+        } else {
+            $error = "Error al guardar la película.";
+            include "views/MovieForm.php";
+        }
+    } else {
         include "views/MovieForm.php";
     }
-
-    public function saveMovie() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $newMovie = new Movie($_POST);
-            
-            $success = $this->gestor->create($newMovie);
-            
-            if ($success) {
-                header("Location: index.php?action=listar");
-            } else {
-                echo "Error al guardar la película.";
-            }
-        }
-    }
+}
 
     public function editMovie() {
         $id = $_GET['id'] ?? null;

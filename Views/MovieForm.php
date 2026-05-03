@@ -1,5 +1,8 @@
 <?php 
 $movie = $movie ?? null; 
+
+$cookie_name = "theme_user_" . $_SESSION['username'];
+$user_theme = $_COOKIE[$cookie_name] ?? 'dark';
 ?>
 
 <!DOCTYPE html>
@@ -8,10 +11,11 @@ $movie = $movie ?? null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $movie ? 'Editar' : 'Añadir' ?> Película - Rotten Tangerines</title>
-    <link rel="stylesheet" href="Views/CSS/Catalog.css">
+    <link rel="stylesheet" href="Views/CSS/styles.css">
+    <link rel="stylesheet" href="Views/CSS/MovieForm.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="form-page">
+<body class="form-page <?= $user_theme ?>">
 
 <header class="main-header">
     <div class="container header-content">

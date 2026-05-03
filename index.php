@@ -10,7 +10,7 @@ $contentController = new ContentController($contentGestor);
 
 $action = $_GET['action'] ?? 'index';
 
-//cookie
+//cookies
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['user_login'])) {
     $cookedEmail = base64_decode($_COOKIE['user_login']);
     $user = $userGestor->SearchByEmail($cookedEmail);
@@ -21,6 +21,22 @@ if (!isset($_SESSION['user_id']) && isset($_COOKIE['user_login'])) {
     } else { 
         setcookie('user_login', '', time() - 3600, '/');
     }
+}
+
+if(isset($_SESSION['user_id'])){
+    $cookie_name = "theme_user_" . $_SESSION['username'];
+    if (isset($_GET['theme'])) {
+        $theme = $_GET['theme'];
+
+        setcookie($cookie_name, $theme, time() + (60 * 60 * 24 * 365 * 10), "/");
+        
+        $cleanUrl = "index.php?action=" . ($_GET['action'] ?? 'index');
+        header("Location: " . $cleanUrl);
+        exit;
+    }
+    $user_theme = $_COOKIE[$cookie_name] ?? 'dark';
+}else{
+    $user_theme = 'dark';
 }
 
 switch ($action) {

@@ -1,74 +1,3 @@
-:root {
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --accent-color: #f97316; /* Naranja Tangerine */
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --danger: #ef4444;
-    --info: #3b82f6;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Header & Logo */
-.main-header {
-    background: rgba(30, 41, 59, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-}
-
-.logo span {
-    color: var(--accent-color);
-}
-
-/* Botones */
-.btn-add {
-    background-color: var(--accent-color);
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: transform 0.2s, background 0.2s;
-}
-
-.btn-add:hover {
-    background-color: #ea580c;
-    transform: translateY(-2px);
-}
-
 /* Grid de Películas */
 .movie-grid {
     display: grid;
@@ -85,25 +14,32 @@ body {
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid var(--border-color);
 }
 
 .movie-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow);
 }
 
 /* Imagen y Overlay */
 .poster-container {
-    position: relative;
-    height: 400px;
-    overflow: hidden;
+    position: relative !important;
+    width: 100% !important;
+    /* Usamos min-height y height en auto para anular los 400px previos */
+    height: auto !important; 
+    min-height: auto !important;
+    aspect-ratio: 2 / 3 !important; 
+    overflow: hidden !important;
+    background-color: #000 !important;
 }
 
 .poster-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Mantiene la proporción sin estirar */
+    object-position: center !important;
+    display: block !important;
 }
 
 .movie-overlay {
@@ -164,7 +100,7 @@ body {
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-    background: rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.05);
 }
 
 .action-btn {
@@ -174,7 +110,7 @@ body {
 }
 
 .action-btn.edit { color: var(--text-muted); }
-.action-btn.edit:hover { color: #fbbf24; }
+.action-btn.edit:hover { color: var(--info); }
 
 .action-btn.delete { color: var(--text-muted); }
 .action-btn.delete:hover { color: var(--danger); }
@@ -187,4 +123,5 @@ body {
     background: var(--card-bg);
     border-radius: 16px;
     color: var(--text-muted);
+    border: 1px solid var(--border-color);
 }

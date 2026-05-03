@@ -1,11 +1,16 @@
+<?php
+$cookie_name = "theme_user_" . $_SESSION['username'];
+$user_theme = $_COOKIE[$cookie_name] ?? 'dark';
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($movie->getTitle()) ?> - Rotten Tangerines</title>
+    <link rel="stylesheet" href="Views/CSS/styles.css">
     <link rel="stylesheet" href="Views/CSS/MovieDetails.css">
 </head>
-<body>
+<body class="form-page <?= $user_theme ?>">
     <main class="details-container">
         <article class="movie-detail">
             <div class="movie-header">

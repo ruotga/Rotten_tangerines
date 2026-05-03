@@ -1,0 +1,128 @@
+/* =========================================
+   MOVIE FORM STYLES (Admin)
+   Consistente con catalog.php y styles.css
+   ========================================= */
+
+/* Contenedor principal */
+.form-page {
+    padding-bottom: 50px;
+}
+
+/* Tarjeta del Formulario */
+.form-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px; /* Misma que .movie-card */
+    box-shadow: var(--shadow);
+    padding: 40px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.form-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+.form-header h2 {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+
+.form-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Estructura del Formulario */
+.custom-form .form-group {
+    margin-bottom: 20px;
+}
+
+.custom-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+/* Inputs y Textarea */
+.custom-form input,
+.custom-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color); /* Adaptable al tema */
+    color: var(--text-main);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.custom-form input:focus,
+.custom-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* Filas multi-columna */
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group-row.three-cols {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Botones y Footer */
+.form-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-submit {
+    background-color: var(--accent-color); /* Naranja Tangerine */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.btn-submit:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    text-decoration: none;
+    color: var(--text-muted);
+    padding: 12px 20px;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.btn-cancel:hover {
+    color: var(--danger);
+}
+
+/* Adaptabilidad móvil */
+@media (max-width: 768px) {
+    .form-group-row, .form-group-row.three-cols {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,77 +1,108 @@
-:root {
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --accent: #f97316;
-    --text: #f8fafc;
-    --muted: #94a3b8;
-}
-
-body {
-    font-family: sans-serif;
-    background: var(--bg-color);
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-}
+/* =========================================
+   MOVIE DETAILS STYLES
+   ========================================= */
 
 .details-container {
-    max-width: 800px;
-    width: 100%;
+    padding: 40px 0;
+    max-width: 1000px; /* Un poco más estrecho para lectura cómoda */
+    margin: 0 auto;
 }
 
+.movie-detail {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+}
+
+/* Cabecera: Póster + Info */
 .movie-header {
     display: flex;
-    gap: 30px;
+    gap: 40px;
     margin-bottom: 30px;
 }
 
 .detail-poster {
-    width: 200px;
+    width: 300px;
+    flex-shrink: 0;
+    aspect-ratio: 2 / 3; /* Proporción de cine */
+    object-fit: cover; /* Evita que la imagen se estire[cite: 7] */
     border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    box-shadow: var(--shadow);
 }
 
-.avg-score { color: var(--accent); margin-top: 15px; }
+.movie-info h1 {
+    font-size: 2.5rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
 
+.synopsis {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.avg-score {
+    color: var(--accent-color);
+    font-size: 1.4rem;
+}
+
+/* Sección de Puntuación */
 .rating-box {
-    background: var(--card-bg);
+    background: var(--bg-color);
     padding: 25px;
     border-radius: 12px;
+    margin: 30px 0;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .rating-form {
-    margin-top: 15px;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
+    margin-top: 15px;
 }
 
-select, .btn-rate {
-    padding: 10px 15px;
-    border-radius: 6px;
-    border: none;
-    font-weight: bold;
+.rating-form select {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-main);
 }
 
 .btn-rate {
-    background: var(--accent);
+    background: var(--accent-color);
     color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.btn-rate:hover { transform: scale(1.05); background: #ea580c; }
-
-.back-link {
-    display: block;
-    margin-top: 25px;
-    color: var(--muted);
-    text-decoration: none;
+.btn-rate:hover {
+    background: var(--accent-hover);
 }
 
-.back-link:hover { color: var(--accent); }
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
 
-hr { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0; }
+.back-link:hover {
+    color: var(--accent-color);
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+    .movie-header { flex-direction: column; align-items: center; text-align: center; }
+    .detail-poster { width: 100%; max-width: 300px; }
+}

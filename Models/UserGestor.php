@@ -38,6 +38,27 @@ class UserGestor {
         
         return $stmt->execute();
     }
+
+
+    public function SearchByEmail($email) {
+        $sql = "SELECT * FROM user WHERE email = :email";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':email', $email);
+        $stmt->execute();
+        
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($data) {
+            if ($data['rol'] == 1) {
+                return new Admin($data);
+            } else {
+                return new User($data);
+            }
+        }
+        
+        return null;
+    }
+
 }
 
 ?>

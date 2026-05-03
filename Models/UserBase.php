@@ -15,6 +15,7 @@ abstract class UserBase {
     // Getters comunes
     public function getId() { return $this->id; }
     public function getUsername() { return $this->username; }
+    public function getEmail() { return $this->email; }
     public function getRol() { return $this->rol; }
 }
 ?>

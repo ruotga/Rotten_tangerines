@@ -20,7 +20,9 @@
         <input type="text" name="username" id="username" required><br><br>
 
         <label for="password">Contraseña:</label><br>
-        <input type="password" name="password" id="password" required><br><br>
+        <input type="password" name="password" id="password" required><br>
+        <input type="checkbox" name="remember-me" id="remember-me">
+        <label for="remember-me">Recordarme en este equipo</label><br><br>
 
         <button type="submit">Entrar</button>
     </form>

@@ -8,16 +8,13 @@ $contentGestor = new ContentGestor();
 $userController = new UserController($userGestor);
 $contentController = new ContentController($contentGestor);
 
-$action = $_GET['action'] ?? 'index';
-
-//cookies
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['user_login'])) {
     $cookedEmail = base64_decode($_COOKIE['user_login']);
-    $user = $userGestor->SearchByEmail($cookedEmail);
+    $user = $userGestor->searchByEmail($cookedEmail);
     if ($user) {
         $_SESSION['user_id'] = $user->getId();
         $_SESSION['username'] = $user->getUsername();
-        $_SESSION['rol'] = $user->getRol(); 
+        $_SESSION['can_edit'] = $user->canEditContent();
     } else { 
         setcookie('user_login', '', time() - 3600, '/');
     }
@@ -30,7 +27,9 @@ if(isset($_SESSION['user_id'])){
 
         setcookie($cookie_name, $theme, time() + (60 * 60 * 24 * 365 * 10), "/");
         
-        $cleanUrl = "index.php?action=" . ($_GET['action'] ?? 'index');
+        $action = $_GET['action'] ?? 'index';
+        $idParam = isset($_GET['id']) ? "&id=" . $_GET['id'] : "";
+        $cleanUrl = "index.php?action=" . $action . $idParam;
         header("Location: " . $cleanUrl);
         exit;
     }
@@ -39,8 +38,9 @@ if(isset($_SESSION['user_id'])){
     $user_theme = 'dark';
 }
 
+$action = $_GET['action'] ?? 'index';
+
 switch ($action) {
-    //public
     case 'login':
         $userController->login();
         break;
@@ -50,7 +50,6 @@ switch ($action) {
     case 'register':
         $userController->register();
         break;
-    //admin
     case 'createMovie':
     case 'editMovie':
     case 'updateMovie':
@@ -59,7 +58,7 @@ switch ($action) {
             header('Location: index.php?action=login');
             exit;
         }
-        if ($_SESSION['rol'] != 1) {
+        if (!$_SESSION['can_edit']) {
             header('Location: index.php?action=index&error=no_admin');
             exit;
         }
@@ -68,7 +67,6 @@ switch ($action) {
         if ($action === 'updateMovie') $contentController->updateMovie();
         if ($action === 'deleteMovie') $contentController->deleteMovie();
         break;
-    //logged-user
     case 'watch':
         if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');

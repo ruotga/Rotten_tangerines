@@ -2,19 +2,19 @@
 
 class Review {
     private $id;
-    private $user_id;
-    private $movie_id;
+    private $userId;
+    private $movieId;
     private $score;
 
     public function __construct($data = []) {
         $this->id = $data['id'] ?? null;
-        $this->user_id = $data['user_id'] ?? null;
-        $this->movie_id = $data['movie_id'] ?? null;
+        $this->userId = $data['userId'] ?? null;
+        $this->movieId = $data['movieId'] ?? null;
         $this->score = $data['score'] ?? null;
     }
 
-    public function getUserId() { return $this->user_id; }
-    public function getMovieId() { return $this->movie_id; }
+    public function getUserId() { return $this->userId; }
+    public function getMovieId() { return $this->movieId; }
     public function getScore() { return $this->score; }
 }
 

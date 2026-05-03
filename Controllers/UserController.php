@@ -18,7 +18,7 @@ class UserController {
             if ($user) {
                 $_SESSION['user_id'] = $user->getId();
                 $_SESSION['username'] = $user->getUsername();
-                $_SESSION['rol'] = $user->getRol();
+                $_SESSION['can_edit'] = $user->canEditContent();
 
                 if ($remember) {
                     $token = base64_encode($user->getEmail());
@@ -56,24 +56,31 @@ class UserController {
         exit;
     }
 
-    public function register() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
+public function register() {
+    $error = null;
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = $_POST['username'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
+
+        try {
             $success = $this->gestor->register($username, $email, $password, 0);
 
             if ($success) {
                 header("Location: index.php?action=login&mensaje=registrado");
                 exit;
-            } else {
-                $error = "No se pudo completar el registro. El usuario o email podrían ya existir.";
-                include "Views/Registro.php";
             }
-        } else {
-            include "Views/Register.php";
+        } catch (Exception $e) {
+            $error = $e->getMessage();
         }
+        
+        include "Views/Register.php"; 
+        
+    } else {
+        
+        include "Views/Register.php";
     }
+}
 
 }

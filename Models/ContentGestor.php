@@ -79,8 +79,6 @@ class ContentGestor {
         return $data ? new Movie($data) : null;
     }
 
-    //rating
-
     public function avgScore($movie_id) {
         $sql = "SELECT AVG(score) as media FROM review WHERE movie_id = :movie_id";
         $stmt = $this->db->prepare($sql);

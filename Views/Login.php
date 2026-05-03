@@ -5,11 +5,12 @@
     <title>Login - Rotten Tangerines</title>
     <link rel="stylesheet" href="Views/CSS/styles.css">
     <link rel="stylesheet" href="Views/CSS/Auth.css?v=1.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="<?= $user_theme ?? 'dark' ?>"> <!-- Clase de tema para variables CSS -->
+<body class="<?= $user_theme ?? 'dark' ?>">
 
-    <main class="auth-page"> <!-- Contenedor principal para centrar -->
-        <div class="auth-card"> <!-- Tarjeta con fondo y bordes -->
+    <main class="auth-page">
+        <div class="auth-card">
             <h2>Iniciar Sesión</h2>
             <p>Accede a tu cuenta en Rotten Tangerines</p>
 

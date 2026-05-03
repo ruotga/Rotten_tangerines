@@ -1,6 +1,7 @@
 <?php
 $cookie_name = "theme_user_" . $_SESSION['username'];
 $user_theme = $_COOKIE[$cookie_name] ?? 'dark';
+if (!$movie) { header("Location: index.php"); exit; }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -9,9 +10,29 @@ $user_theme = $_COOKIE[$cookie_name] ?? 'dark';
     <title><?= htmlspecialchars($movie->getTitle()) ?> - Rotten Tangerines</title>
     <link rel="stylesheet" href="Views/CSS/styles.css">
     <link rel="stylesheet" href="Views/CSS/MovieDetails.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="form-page <?= $user_theme ?>">
-    <main class="details-container">
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="index.php" class="logo">Rotten <span>Tangerines</span></a>
+            
+            <div class="header-actions">
+                <div class="theme-container">
+                    <?php if ($user_theme === 'light'): ?>
+                        <a href="index.php?action=watch&id=<?=$movie->getId();?>&theme=dark" class="theme-switch-link"><i class="fas fa-moon"></i></a>
+                    <?php else: ?>
+                        <a href="index.php?action=watch&id=<?=$movie->getId();?>&theme=light" class="theme-switch-link"><i class="fas fa-sun"></i></a>
+                    <?php endif; ?>
+                </div>
+
+                <nav class="nav-menu">
+                    <a href="index.php?action=logout" class="btn-logout"><i class="fas fa-sign-out-alt"></i></a>
+                </nav>  
+            </div>
+        </div>
+    </header>
+    <main class="details-container"> 
         <article class="movie-detail">
             <div class="movie-header">
                 <img src="<?= $movie->getPosterUrl() ?>" alt="Poster" class="detail-poster">

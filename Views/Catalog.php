@@ -28,7 +28,7 @@ $user_theme = $_COOKIE[$cookie_name] ?? 'dark';
             </div>
 
             <nav class="nav-menu">
-                <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 1): ?>
+                <?php if (isset($_SESSION['can_edit']) && $_SESSION['can_edit'] == 1): ?>
                     <a href="index.php?action=createMovie" class="btn-add">Añadir</a>
                 <?php endif; ?>
                 <a href="index.php?action=logout" class="btn-logout"><i class="fas fa-sign-out-alt"></i></a>
@@ -59,7 +59,7 @@ $user_theme = $_COOKIE[$cookie_name] ?? 'dark';
                         <p class="movie-synopsis"><?= htmlspecialchars(substr($movie->getSynopsis(), 0, 100)) ?>...</p>
                     </div>
 
-                    <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 1): ?>
+                    <?php if (isset($_SESSION['can_edit']) && $_SESSION['can_edit'] == 1): ?>
                         <div class="movie-actions">
                             <a href="index.php?action=editMovie&id=<?= $movie->getId() ?>" class="action-btn edit"><i class="fas fa-edit"></i></a>
                             <a href="index.php?action=deleteMovie&id=<?= $movie->getId() ?>" class="action-btn delete" onclick="return confirm('¿Seguro?')"><i class="fas fa-trash"></i></a>

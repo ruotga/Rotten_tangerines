@@ -3,6 +3,7 @@ $movie = $movie ?? null;
 
 $cookie_name = "theme_user_" . $_SESSION['username'];
 $user_theme = $_COOKIE[$cookie_name] ?? 'dark';
+$currentAction = $movie ? 'editMovie&id=' . $movie->getId() : 'createMovie';
 ?>
 
 <!DOCTYPE html>
@@ -19,12 +20,23 @@ $user_theme = $_COOKIE[$cookie_name] ?? 'dark';
 
 <header class="main-header">
     <div class="container header-content">
-        <h1 class="logo">Rotten <span>Tangerines</span></h1>
-        <a href="index.php" class="btn-add">
-            <i class="fas fa-arrow-left"></i> Volver al Catálogo
-        </a>
+        <a href="index.php" class="logo">Rotten <span>Tangerines</span></a>
+        
+        <div class="header-actions">
+            <div class="theme-container">
+                <?php if ($user_theme === 'light'): ?>
+                    <a href="index.php?action=<?= $currentAction ?>&theme=dark" class="theme-switch-link"><i class="fas fa-moon"></i></a>
+                <?php else: ?>
+                    <a href="index.php?action=<?= $currentAction ?>&theme=light" class="theme-switch-link"><i class="fas fa-sun"></i></a>
+                <?php endif; ?>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.php?action=logout" class="btn-logout"><i class="fas fa-sign-out-alt"></i></a>
+            </nav>  
+        </div>
     </div>
 </header>
+
 
 <main class="container">
     <section class="form-card">

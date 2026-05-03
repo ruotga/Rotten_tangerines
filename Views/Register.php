@@ -5,6 +5,7 @@
     <title>Registro - Rotten Tangerines</title>
     <link rel="stylesheet" href="Views/CSS/styles.css">
     <link rel="stylesheet" href="Views/CSS/Auth.css?v=1.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="<?= $user_theme ?? 'dark' ?>">
 
@@ -30,7 +31,7 @@
 
                 <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" placeholder="Mínimo 6 caracteres" required>
+                    <input type="password" name="password" id="password" placeholder="Mínimo 6 caracteres" minlength="6" required>
                 </div>
 
                 <button type="submit" class="btn-auth">

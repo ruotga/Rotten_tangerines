@@ -82,7 +82,11 @@ class ContentController {
     public function rateMovie() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'])) {
             $movieId = $_POST['movie_id'];
-            $score = $_POST['score'];
+            $score = (int)$_POST['score'];
+            if ($score < 1 || $score > 5){
+                header("Location: index.php?action=watch&id=" . $movieId);
+                exit;
+            }
             $userId = $_SESSION['user_id'];
 
             $success = $this->gestor->rate($userId, $movieId, $score);

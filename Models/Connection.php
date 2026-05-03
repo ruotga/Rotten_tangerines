@@ -4,7 +4,7 @@ class Connection
 {
     protected $conn;
     private $configFile = "config.json";
-    private static $instance = null;    // las funciones
+    private static $instance = null;
 
     private function __construct(){
         $this->makeConnection();
